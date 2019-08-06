@@ -23,6 +23,28 @@
     (skip-chars-forward "-_A-Za-z0-9")
     (set-mark pt)))
 
+(search-forward "cat")
+cat
+(search-backward "cat")
+
+(re-search-backward ".*cat")
+
+(save-excursion
+
+  ) ; after it runs it will restore point, mark, and the current buffer
+
+(save-restriction
+  (narrow-to-region 1 3)
+  ) ; this undos any narrowing I do with my code for operating!
+
+(insert "sun and moon")sun and moon
+
+(delete-char 9)9101112
+
+(insert (buffer-substring-no-properties 1 10))
+                                        ;(defun i
+(insert (current-word t t))
+
 (defun select-current-line ()
   "Select the current line"
   (interactive)
@@ -53,4 +75,41 @@
   (browse-url
    (concat "http://www.answers.com/main/ntquery?s=" (thing-at-point 'symbol))))
 
+                                        ; return the current line as a string
+(insert (buffer-substring-no-properties (line-beginning-position) (line-end-position))) ;(insert (buffer-substring-no-properties (line-beginning-position) (line-end-position))) ;
+
+(setq str (thing-at-point 'filename))
+
+(defun my-select-inside-quotes ()
+  "Select text between douoble straight quotes on each side of cursor."
+  (interactive)
+  (let (p1 p2)
+    (skip-chars-backward "^\"")
+    (setq ps (point))
+    (skip-chars-forward "^\"")
+    (setq p2 (point))
+
+    (goto-char p1)
+    (push-mark p2)
+    (setq mark-active t)
+    ))
+
+(concat "some" "thing")
+
+(insert
+ (first
+  (split-string "xy_007" "_"))) ; xy
+
+(with-temp-buffer
+  (insert "woah"))
+
+(insert (buffer-name)); simpleScripts.el
+
+(insert
+ (buffer-file-name)); /Users/ccrowe/Documents/emacsFunctions/simpleScripts.el
+
+(with-current-buffer "simpleScripts.el"
+  (insert "yes")) ; yes;  COOL!
+
+(save-current-buffer)
 
